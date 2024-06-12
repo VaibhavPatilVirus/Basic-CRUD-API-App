@@ -50,6 +50,8 @@ class DataController:
     @staticmethod
     def get_data_endpt(id):
         try:
+            if not ObjectId.is_valid(id):
+                return jsonify({"error": "Invalid data ID."}), 400
             data = database.get_collection("CRUDApp", "data").find_one({"_id": ObjectId(id)})
             if not data:
                 return jsonify({"error": "Data not found"}), 404
@@ -57,7 +59,7 @@ class DataController:
             dataCopy['_id'] = str(dataCopy['_id'])
             return jsonify(dict(dataCopy)), 200
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            return jsonify({"error":"Internal server error."}), 500
 
     @staticmethod
     def update_data_endpt(id):
@@ -80,8 +82,8 @@ class DataController:
                 return jsonify({"error": "Data not found"}), 404
             return jsonify({"message": "Data deleted"}), 200
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            return jsonify({"error":"Internal server error."}), 500
 
     @staticmethod
     def handle_exception(e):
-        return jsonify({"error": e.description}), e.code
+        return jsonify({"error":"Internal server error."}), e.code

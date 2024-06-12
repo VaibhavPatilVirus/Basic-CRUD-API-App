@@ -6,10 +6,10 @@ from src.controllers.data_controller import DataController
 def create_app(db_uri:str):
     app = Flask(__name__)
     database.get_client(db_uri)
-    registerAPIRoutes(app)
+    register_api_routes(app)
     return app
 
-def registerAPIRoutes(appIn):
+def register_api_routes(appIn):
     appIn.add_url_rule("/", methods=["GET"], view_func=DataController.root)
     appIn.add_url_rule('/data', methods=['POST'], view_func=DataController.create_data_endpt)
     appIn.add_url_rule('/data/<id>', methods=['GET'], view_func=DataController.get_data_endpt)

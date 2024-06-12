@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r dependencies.txt
 #Expose container port outside the container.
 EXPOSE 5000
 #Run app
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]

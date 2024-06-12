@@ -9,6 +9,9 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['CRUDApp']
 collection = db['data']
 
+
+
+
 @app.route('/')
 def root():
     try:
@@ -86,5 +89,5 @@ def delete_data_endpt(id):
 def handle_exception(e):
     return jsonify({"error": e.description}), e.code
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+def create_app():
+    return app

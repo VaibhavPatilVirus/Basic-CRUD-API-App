@@ -75,5 +75,5 @@ class TestAPI(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(res.json()["error"], "Data not found")
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()

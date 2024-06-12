@@ -7,6 +7,6 @@ COPY . /app
 #Install app dependencies.
 RUN pip install --no-cache-dir -r dependencies.txt
 #Expose container port outside the container.
-EXPOSE 8080
+EXPOSE 5000
 #Run app
 CMD ["python", "app.py"]

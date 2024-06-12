@@ -64,6 +64,8 @@ class DataController:
     @staticmethod
     def update_data_endpt(id):
         try:
+            if not ObjectId.is_valid(id):
+                return jsonify({"error": "Invalid data ID."}), 400
             data = request.get_json()
             if not data:
                 return jsonify({"error": "Invalid JSON"}), 400
@@ -77,6 +79,8 @@ class DataController:
     @staticmethod
     def delete_data_endpt(id):
         try:
+            if not ObjectId.is_valid(id):
+                return jsonify({"error": "Invalid data ID."}), 400
             result = database.get_collection("CRUDApp", "data").delete_one({"_id": ObjectId(id)})
             if result.deleted_count == 0:
                 return jsonify({"error": "Data not found"}), 404
